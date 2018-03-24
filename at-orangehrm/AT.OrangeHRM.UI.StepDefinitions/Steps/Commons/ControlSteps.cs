@@ -1,7 +1,7 @@
 ﻿namespace AT.OrangeHRM.UI.StepDefinitions.Steps.Commons
 {
-    using AssertLibrary;
     using AT.OrangeHRM.UI.StepDefinitions.Commons;
+    using NUnit.Framework;
     using OpenQA.Selenium;
     using System.Linq;
     using TechTalk.SpecFlow;

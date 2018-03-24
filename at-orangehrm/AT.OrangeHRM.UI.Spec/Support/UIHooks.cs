@@ -1,5 +1,6 @@
 ﻿namespace AT.OrangeHRM.UI.Spec.Support
 {
+    using System.Configuration;
     using AT.OrangeHRM.UI.StepDefinitions.Commons;
     using AT.OrangeHRM.UI.StepDefinitions.Steps;
     using AT.OrangeHRM.UI.StepDefinitions.Steps.auth;
@@ -28,9 +29,10 @@
         [BeforeScenario(Order = 10)]
         public static void OpenBrowser(FeatureContext featureContext)
         {
+            string browserName = ConfigurationManager.AppSettings[ConfigKeys.BrowserName];
             var webBrowser = new WebBrowserSteps();
             featureContext[Keys.WebBrowser] = webBrowser;
-            webBrowser.OpenWebBrowser("chrome");
+            webBrowser.OpenWebBrowser(browserName);
         }
 
         /// <summary>
@@ -40,7 +42,8 @@
         [BeforeScenario(Order = 10)]
         public static void GotoOrangeHRM(FeatureContext featureContext)
         {
-            ((WebBrowserSteps)featureContext[Keys.WebBrowser]).GoTo("http://opensource.demo.orangehrmlive.com");
+            string orangeHRMUrl = ConfigurationManager.AppSettings[ConfigKeys.OrangeHRMUrl];
+            ((WebBrowserSteps)featureContext[Keys.WebBrowser]).GoTo(orangeHRMUrl);
         }
 
         /// <summary>
@@ -49,9 +52,11 @@
         [BeforeScenario]
         public void LoginIntoOrangeHRM()
         {
+            string userName = ConfigurationManager.AppSettings[ConfigKeys.UserName];
+            string password = ConfigurationManager.AppSettings[ConfigKeys.Password];
             var loginSteps = new LoginSteps(ScenarioContext, FeatureContext);
 
-            loginSteps.LoginIntoOrangeHRM("Admin", "admin");
+            loginSteps.LoginIntoOrangeHRM(userName, password);
         }
 
         [AfterScenario]

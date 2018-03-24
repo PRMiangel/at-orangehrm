@@ -44,7 +44,7 @@
         /// <param name="fieldName"></param>
         /// <param name="value"></param>
         [When(@"I fill '(.*)' in (.*) field")]
-        public void FillTextField(string fieldName, string value)
+        public void FillTextField(string value, string fieldName)
         {
             var inputs = WebBrowser.driver.FindElements(By.TagName(HTMLTag.Input));
 
@@ -54,6 +54,7 @@
                 .Contains(fieldName.ToLower().Replace(" ", ""))).ToList();
 
             inputsFiltered.First().SendKeys(value);
+            inputsFiltered.First().SendKeys(OpenQA.Selenium.Keys.Tab);
         }
 
         /// <summary>

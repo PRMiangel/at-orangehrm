@@ -54,18 +54,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\SpecFlowFeature.feature.cs">
+    <Compile Include="Features\PIM\AddEmployee.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SpecFlowFeature.feature</DependentUpon>
+      <DependentUpon>AddEmployee.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\UIHooks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\SpecFlowFeature.feature">
+    <None Include="Features\PIM\AddEmployee.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SpecFlowFeature.feature.cs</LastGenOutput>
+      <LastGenOutput>AddEmployee.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -85,5 +86,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\SpecFlow.2.3.1\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.2.3.1\build\SpecFlow.targets'))" />
+    <Error Condition="!Exists('..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets'))" />
   </Target>
+  <Import Project="..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets" Condition="Exists('..\packages\Selenium.Chrome.WebDriver.2.37\build\Selenium.Chrome.WebDriver.targets')" />
 </Project>
